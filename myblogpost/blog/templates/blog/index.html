@@ -1,150 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<style>
-    card {
-        box-shadow: 0 16px 48px #E3E7EB;
-    }
 
-    .body {
-        font-family: "Roboto", sans-serif;
-        font-size: 18px;
-        background-color: #fdfdfd;
 
-    }
-
-    .banner {
-        background-image: url(https://c8.alamy.com/comp/TBC6JT/blog-concept-on-yellow-background-business-blogging-for-website-banner-poster-modern-layers-design-sign-with-icons-on-bright-backdrop-vector-ill-TBC6JT.jpg);
-
-    }
-
-    .fl {
-        color: red;
-
-    }
-
-    /* Heading */
-    .blogname {
-        color: rgba(4, 109, 194, 0.651);
-        font-family: cursive;
-        font-variant: initial;
-    }
-
-    /* Heading */
-
-    .head_text {
-        color: white;
-    }
-
-    .card {
-        box-shadow: 0 16px 48px #E3E7EB;
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    /* Navigation Bar */
-    .nav {
-        height: 50px;
-        width: 100%;
-        position: relative;
-    }
-
-    .nav>.nav-header {
-        display: inline;
-    }
-
-    .nav>.nav-header>.nav-title {
-
-        display: inline-block;
-        font-size: 22px;
-        color: black;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .nav>.nav-btn {
-        display: none;
-    }
-
-    .nav>.nav-links {
-        display: inline;
-        float: right;
-        font-size: 18px;
-    }
-
-    .nav>.nav-links>a {
-        display: inline-block;
-        padding: 13px 10px 13px 10px;
-        text-decoration: none;
-        color: black;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    .nav>.nav-links>a:hover {
-        background-color: rgba(0, 0, 0, 0.3);
-    }
-
-    .nav>#nav-check {
-        display: none;
-    }
-
-    @media (max-width:600px) {
-        .nav>.nav-btn {
-            display: inline-block;
-            position: absolute;
-            right: 0px;
-            top: 0px;
-        }
-
-        .nav>.nav-btn>label {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            padding: 13px;
-        }
-
-        .nav>.nav-btn>label:hover,
-        .nav #nav-check:checked~.nav-btn>label {
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-
-        .nav>.nav-btn>label>span {
-            display: block;
-            width: 25px;
-            height: 10px;
-            border-top: 2px solid #eee;
-        }
-
-        .nav>.nav-links {
-            position: absolute;
-            display: block;
-            width: 100%;
-            background-color: #333;
-            height: 0px;
-            transition: all 0.3s ease-in;
-            overflow-y: hidden;
-            top: 50px;
-            left: 0px;
-        }
-
-        .nav>.nav-links>a {
-            display: block;
-            width: 100%;
-        }
-
-        .nav>#nav-check:not(:checked)~.nav-links {
-            height: 0px;
-        }
-
-        .nav>#nav-check:checked~.nav-links {
-            height: calc(100vh - 50px);
-            overflow-y: auto;
-        }
-    }
-
-    /* Nav bar */
-</style>
 
 <header class="masthead banner">
     <div class="overlay"></div>
@@ -188,12 +45,15 @@ Hey
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">{{ post.author }} </p>
-                    <p class="card-text">{{post.content}}</p>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.date_posted}} </p> </p>
+                    <p class="card-text">{{post.content|slice:":200"}}</p>
+                    <a href="/blog_detail/{{post.id}}" class="btn btn-primary">Read More &rarr;</a>
                     
                 </div>
             </div>
             {% endfor %}
+</div>
+</div>
 </div>
 
 {%endblock%}

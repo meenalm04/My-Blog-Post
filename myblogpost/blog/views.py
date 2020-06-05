@@ -9,22 +9,36 @@ from django.contrib.auth.models import User
 # posts = json.loads(requests.get('https://jsonplaceholder.typicode.com/posts%27).text)
 # Create your views here.
 def home(request):
+    print ("home")
     posts = Post.objects.all()
     context = {
-        'post' : posts
+        'posts' : posts
     }
+    print (context)
     return render(request, 'blog/index.html', context)
+
 def index(request):
     return render(request, 'blog/index.html', {'title' : 'Index'})
+
 def about(request):
     return render(request, 'blog/about.html', {'title' : 'About'})
 
 # class PostList(generic.ListView):
 #     queryset = Post.objects.order_by('date_posted')
 #     template_name = 'index.html'
-# class PostDetail(generic.DetailView):
+# class post_detail(generic.DetailView):
 #     model = Post
 #     template_name = 'post_detail.html'
+
+def DetailView(request, id):
+        obj = Post.objects.get(id=id)
+        context = {
+            'Post' : obj
+        }
+        print (context)
+        return render(request, 'blog/post_detail.html', context)
+
+
 
  
 
